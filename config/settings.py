@@ -37,8 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'productos'
+    'productos',
+    #para darle estilos a los formularios usando bootstrap
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,3 +125,4 @@ STATIC_URL = 'static/'
 
 LOGIN_REDIRECT_URL = 'listar_productos' # A dónde va después de loguearse
 LOGIN_URL = 'login' # A dónde va si no está logueado
+LOGOUT_REDIRECT_URL = 'login' #a donde vamos una vez que el usuario cierra la session

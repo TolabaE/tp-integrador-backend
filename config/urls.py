@@ -17,13 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.auth import views as auth_views
+from productos.views import RegistroView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #aqui vamos agregando todas las urls de las aplicaciones que vayamos creando
     path('productos/', include('productos.urls')),
 
-    # urls para iniciar sesion y cerrar sesion
+    # urls para registar, iniciar y cerrar sesion de usuarios
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('registro/', RegistroView.as_view(), name='registro'),
 ]
