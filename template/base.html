@@ -13,10 +13,10 @@
             <a class="navbar-brand" href="{% url 'listar_productos' %}">Mi Tienda</a>
             <div class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
-                    <span class="nav-link text-white">Hola, {{ user.username }}</span>
+                    <span class="nav-link text-white">Hola bienvenido {{ user.username }} </span>
                     <form method="post" action="{% url 'logout' %}" class="d-inline">
                         {% csrf_token %}
-                        <button type="submit" class="nav-link btn btn-link text-white">Cerrar Sesión</button>
+                        <button type="submit" class="nav-link ">Cerrar Sesión</button>
                     </form>
                 {% else %}
                     <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
@@ -26,6 +26,17 @@
         </div>
     </nav>
 
+    <div class="p-2">
+        {% if user.groups.all %}
+            <p>Rol Asignado: 
+                {% for grupo in user.groups.all %}
+                    <span class="badge bg-info">{{ grupo.name }}</span>
+                {% endfor %}
+            </p>
+        {% else %}
+            <p>Sin roles asignados</p>
+        {% endif %}
+    </div>
     <main class="container bg-body-secondary">
         {% block content %}
         {% endblock %}

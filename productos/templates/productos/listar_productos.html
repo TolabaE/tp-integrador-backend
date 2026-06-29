@@ -3,34 +3,49 @@
 
 {% block content %}
     <h1 class="text-center">Mis Productos</h1>
-    
-    <a href="{% url 'crear_productos' %}" class="btn btn-success m-2">Agregar nuevo producto</a>
-    
-    <table class="table table-secondary">
-        <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody class="table-primary">
-            {% for producto in producto_list %}
-            <tr>
-                <th scope="row">{{producto.id}}</th>
-                <td>{{producto.nombre}}</td>
-                <td>{{producto.precio}}</td>
-                <td>{{producto.stock}}</td>
-                <td>
-                    <a href="{% url 'editar_producto' producto.pk %}" class="btn btn-primary">Editar</a>
-                    <a href="{% url 'eliminar_producto' producto.pk %}" class="btn btn-danger">Eliminar</a>
-                </td>
-            </tr>
-            {% empty %}
-                <li>No hay productos registrados.</li>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% if user.is_authenticated %}
+        {% if perms.productos.add_producto %}
+            <a href="{% url 'crear_productos' %}" class="btn btn-success m-2">Agregar nuevo producto</a>
+        {%endif%}
+    {%endif%}
+
+    <div class="p-2">
+        <table class="table table-secondary">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in producto_list %}
+                <tr>
+                    <th scope="row">{{producto.id}}</th>
+                    <td>{{producto.nombre}}</td>
+                    <td>$ {{producto.precio}}</td>
+                    <td>{{producto.stock}}</td>
+                    <td>
+                        {% if user.is_authenticated %}
+                            {% if perms.productos.change_producto %}
+                                <a href="{% url 'editar_producto' producto.pk %}" class="btn btn-primary">Editar</a>
+                            {% else %}
+                                <i>No disponible</i>
+                            {%endif%}
+                            {% if perms.productos.delete_producto %}                                
+                                <a href="{% url 'eliminar_producto' producto.pk %}" class="btn btn-danger">Eliminar</a>
+                            {%endif%}
+                        {% else %}
+                            <i>Logearse</i>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                    <li>No hay productos registrados.</li>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

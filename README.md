@@ -1,6 +1,6 @@
 # Panel de control tienda de ropa
 
-*** Este proyecto fue realizado con
+Este proyecto fue realizado con Django
 
 
 ## Pasos a seguir para levantar el servidor en tu ordenar.
@@ -38,4 +38,37 @@ Como en el proyecto actual si esta copiada la base de datos no es necesario real
 
 ```
 python manage.py runserver
+```
+
+Abrir en el lavegador la siguiente URL:
+
+```http://127.0.0.1:8000/login/```
+
+##  Objetivo del proyecto
+
+Mostrar una panel de gestion de stock de productos en una tienda de ropas. dependiendo el rol de quien se logea pueder realizar diferentes acciones.
+
+hay tres roles disponibles:
+
+* admin: puede agregar, eliminar, cambiar y consultar los productos.
+* operador: unicamente puede cambiar un producto ya sea el stock o el nombre, pero no puede eliminar ni añadir otro producto.
+* consultor: solo puede realizar consulta de productos pero no puede realizar ninguna otra accion.
+
+hay usuarios predefinidos y la password es la misma para todos.
+```
+Usernames
+
+admin:{
+    JuanPE
+}
+Consultor:{
+    RamonR
+    Ferchu
+}
+Operador: {
+    EduardoT
+}
+
+passwords:awds1234
+
 ```
