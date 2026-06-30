@@ -3,6 +3,15 @@ from django.urls import reverse_lazy
 from .models import Producto
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.views.generic import ListView
+
+class ListaEmpleadosView(PermissionRequiredMixin, ListView):
+    model = User
+    template_name = 'listar_empleados.html'
+    context_object_name = 'empleados'
+    permission_required = 'auth.view_user' # Solo permitimos que el Administrador vea esto
 
 # aqui listo los pruductos que se encuentran en la base de datos, y los muestro en la plantilla listar_productos.html
 class ProductoListView(ListView):

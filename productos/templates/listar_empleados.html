@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Lista de Empleados Registrados</h2>
+    <div class="card">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Fecha de contratación</th>
+                </tr>
+            </thead>
+            <tbody class="table-success table-striped-columns">
+                {% for emp in empleados %}
+                <tr>
+                    <td>{{ emp.username }}</td>
+                    <td>{{ emp.first_name }}</td>
+                    <td>{{ emp.email }}</td>
+                    {% for group in emp.groups.all %}
+                        <td>{{ group.name }}</td>
+                    {% endfor %}
+                    <td>{{ emp.date_joined|date:"d/m/Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
