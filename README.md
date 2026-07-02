@@ -49,9 +49,10 @@ Mostrar una panel de gestion de stock de productos en una tienda de ropas. depen
 
 hay tres roles disponibles:
 
-* administrador: puede agregar, eliminar, cambiar y consultar los productos, tambien puede consultar por los empleados que hay registrados en el sistema.
-* operador: unicamente puede cambiar un producto ya sea el stock o el nombre, pero no puede eliminar ni añadir otro producto.
-* vendedor: solo puede realizar consulta de productos pero no puede realizar ninguna otra acción.
+* administrador: puede agregar, eliminar, cambiar y consultar los productos, ademas consultar por los empleados que hay registrados en el sistema.
+Tambien puede ver el historial de los movimientos realizados, cuantos productos entraron o salieron y quien realizo dicha accion.
+* operador: unicamente puede cambiar un producto, gestionar el stock de productos vendidos, pero no puede eliminar ni añadir otro producto, tampoco ver el historial de movimiento.
+* vendedor: solo puede realizar consulta de productos disponibles, gestionar stock de productos, pero no puede realizar ninguna otra acción, tampoco ver el historial de movimeinto.
 
 hay usuarios predefinidos y la password es la misma para todos.
 ```
